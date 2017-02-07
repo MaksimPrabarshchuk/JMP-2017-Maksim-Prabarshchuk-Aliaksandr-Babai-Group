@@ -1,0 +1,14 @@
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        jcenter()
+    }
+
+    version = '0.0.1'
+    group = 'com.github.alebabai.jmp2k17'
+}
