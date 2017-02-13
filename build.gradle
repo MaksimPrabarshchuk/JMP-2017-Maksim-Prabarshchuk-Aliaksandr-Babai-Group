@@ -9,6 +9,10 @@ subprojects {
         jcenter()
     }
 
+    dependencies {
+        compile 'junit:junit-dep:4.11'
+    }
+
     version = '0.0.1'
     group = 'com.github.alebabai.jmp2k17'
 }
