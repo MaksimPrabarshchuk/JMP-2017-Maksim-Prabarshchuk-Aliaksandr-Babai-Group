@@ -1,5 +1,5 @@
-## Deadlock with three threads
+# Deadlock with three threads
 
-# Java Visual VM
+### Java Visual VM
 ![UI](images/ui.png)  
 ![Thread Dump](images/thread-dump.png)
