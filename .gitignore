@@ -140,3 +140,5 @@ local.properties
 #    Other
 ###############
 .DS_Store
+!03-classloaders-0.0.1.jar
+!03-classloaders-0.0.2.jar

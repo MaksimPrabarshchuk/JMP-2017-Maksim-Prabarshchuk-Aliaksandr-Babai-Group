@@ -6,11 +6,12 @@ subprojects {
     targetCompatibility = 1.8
 
     repositories {
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        compile 'junit:junit-dep:4.11'
+        compile 'org.apache.commons:commons-lang3:3.5'
+        testCompile 'junit:junit:4.12'
     }
 
     version = '0.0.1'
