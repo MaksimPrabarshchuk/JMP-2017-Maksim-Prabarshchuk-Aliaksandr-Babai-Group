@@ -9,7 +9,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class JerseyApplication {
-    private static final URI BASE_URI = URI.create("http://localhost:8080/");
+    public static final URI BASE_URI = URI.create("http://localhost:8080/");
     private static final String APP_NAME = "Jersey Simple REST";
     private static final String BASE_PACKAGE = "com.github.alebabai.ws";
 
