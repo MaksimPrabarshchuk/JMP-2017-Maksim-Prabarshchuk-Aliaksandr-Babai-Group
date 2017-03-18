@@ -12,7 +12,7 @@ import static com.github.alebabai.ws.JerseyApplication.BASE_URI;
 @Path("songs")
 @Produces(MediaType.APPLICATION_JSON)
 public class SongEndpoint {
-    private static final Map<Long, Song> SAP_HANA_DB = new LinkedHashMap<>();
+    public static final Map<Long, Song> SAP_HANA_DB = new LinkedHashMap<>();
 
     @GET
     public Collection<Song> getSongs() {
@@ -34,8 +34,7 @@ public class SongEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response saveSong(Song song) {
         if(Objects.nonNull(song) && Objects.nonNull(song.getId())) {
-            SAP_HANA_DB.put(song.getId(), song);
-            return Optional.of(song.getId())
+            final Response response = Optional.of(song.getId())
                     .filter(SAP_HANA_DB::containsKey)
                     .map(id -> Response.ok().type(MediaType.APPLICATION_JSON_TYPE).entity(song).build())
                     .orElse(Response
@@ -43,6 +42,8 @@ public class SongEndpoint {
                             .type(MediaType.APPLICATION_JSON_TYPE)
                             .entity(song)
                             .build());
+            SAP_HANA_DB.put(song.getId(), song);
+            return response;
 
         }
         return Response.status(Response.Status.BAD_REQUEST).type(MediaType.APPLICATION_JSON_TYPE).build();

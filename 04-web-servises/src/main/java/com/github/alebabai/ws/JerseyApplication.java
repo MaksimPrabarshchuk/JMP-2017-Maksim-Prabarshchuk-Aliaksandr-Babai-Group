@@ -18,7 +18,7 @@ public class JerseyApplication {
         server.start();
     }
 
-    private static ResourceConfig createConfig() {
+    public static ResourceConfig createConfig() {
         final ResourceConfig config = new ResourceConfig();
         config.setApplicationName(APP_NAME);
         config.packages(BASE_PACKAGE);
