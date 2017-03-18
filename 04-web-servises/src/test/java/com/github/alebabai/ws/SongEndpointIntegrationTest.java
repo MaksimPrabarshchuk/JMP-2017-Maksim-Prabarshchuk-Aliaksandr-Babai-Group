@@ -18,7 +18,10 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.github.alebabai.ws.JerseyApplication.createConfig;
 
@@ -46,9 +49,44 @@ public class SongEndpointIntegrationTest extends JerseyTest {
         final Response response = target("/songs").request().get();
         final List<Song> songs = response.readEntity(new GenericType<List<Song>>() {
         });
-        Assert.assertEquals(response.getMediaType(), MediaType.APPLICATION_JSON_TYPE);
         Assert.assertEquals(response.getStatus(), 200);
+        Assert.assertEquals(MediaType.APPLICATION_JSON_TYPE, response.getMediaType());
         Assert.assertEquals(Collections.singletonList(SONG), songs);
+    }
+
+    @Test
+    public void getAscSortedSongsTest() {
+        final Song song1 = new Song(1L, new Text(Collections.singletonList(new Verse(Collections.singletonList(new Quote(PHRASE))))));
+        final Song song2 = new Song(2L, new Text(Collections.singletonList(new Verse(Collections.singletonList(new Quote(PHRASE))))));
+        SongEndpoint.SAP_HANA_DB.put(1L, song1);
+        SongEndpoint.SAP_HANA_DB.put(2L, song2);
+        final Response response = target("/songs").queryParam("sort", "asc").request().get();
+        final List<Song> actualSongs = response.readEntity(new GenericType<List<Song>>() {
+        });
+        final List<Song> expectedSongs = Stream
+                .of(song1, song2)
+                .sorted(Comparator.comparing(Song::getId))
+                .collect(Collectors.toList());
+        Assert.assertEquals(response.getStatus(), 200);
+        Assert.assertEquals(expectedSongs, actualSongs);
+    }
+
+    @Test
+    public void getDescSortedSongsTest() {
+        final Song song1 = new Song(1L, new Text(Collections.singletonList(new Verse(Collections.singletonList(new Quote(PHRASE))))));
+        final Song song2 = new Song(2L, new Text(Collections.singletonList(new Verse(Collections.singletonList(new Quote(PHRASE))))));
+        SongEndpoint.SAP_HANA_DB.put(1L, song1);
+        SongEndpoint.SAP_HANA_DB.put(2L, song2);
+        final Response response = target("/songs").queryParam("sort", "desc").request().get();
+        final List<Song> actualSongs = response.readEntity(new GenericType<List<Song>>() {
+        });
+        final List<Song> expectedSongs = Stream
+                .of(song1, song2)
+                .sorted((it1, it2) -> it2.getId().compareTo(it1.getId()))
+                .collect(Collectors.toList());
+        Assert.assertEquals(response.getStatus(), 200);
+        Assert.assertEquals(MediaType.APPLICATION_JSON_TYPE, response.getMediaType());
+        Assert.assertEquals(expectedSongs, actualSongs);
     }
 
     @Test
@@ -56,8 +94,8 @@ public class SongEndpointIntegrationTest extends JerseyTest {
         SongEndpoint.SAP_HANA_DB.put(SONG_ID, SONG);
         final Response response = target(String.format("/songs/%d", SONG_ID)).request().get();
         final Song song = response.readEntity(Song.class);
-        Assert.assertEquals(response.getMediaType(), MediaType.APPLICATION_JSON_TYPE);
         Assert.assertEquals(response.getStatus(), 200);
+        Assert.assertEquals(MediaType.APPLICATION_JSON_TYPE, response.getMediaType());
         Assert.assertEquals(SONG, song);
     }
 
@@ -72,8 +110,8 @@ public class SongEndpointIntegrationTest extends JerseyTest {
         final Response response = target("/songs").request().post(Entity.entity(SONG, MediaType.APPLICATION_JSON_TYPE));
         final Song song = response.readEntity(Song.class);
         Assert.assertEquals(SONG, song);
-        Assert.assertEquals(response.getMediaType(), MediaType.APPLICATION_JSON_TYPE);
         Assert.assertEquals(response.getStatus(), 201);
+        Assert.assertEquals(MediaType.APPLICATION_JSON_TYPE, response.getMediaType());
     }
 
     @Test
@@ -82,8 +120,8 @@ public class SongEndpointIntegrationTest extends JerseyTest {
         final Response response = target("/songs").request().post(Entity.entity(SONG, MediaType.APPLICATION_JSON_TYPE));
         final Song song = response.readEntity(Song.class);
         Assert.assertEquals(SONG, song);
-        Assert.assertEquals(response.getMediaType(), MediaType.APPLICATION_JSON_TYPE);
         Assert.assertEquals(response.getStatus(), 200);
+        Assert.assertEquals(MediaType.APPLICATION_JSON_TYPE, response.getMediaType());
     }
 
     @Test
@@ -98,8 +136,8 @@ public class SongEndpointIntegrationTest extends JerseyTest {
         final Response response = target(String.format("/songs/%d", SONG_ID)).request().put(Entity.entity(SONG, MediaType.APPLICATION_JSON_TYPE));
         final Song song = response.readEntity(Song.class);
         Assert.assertEquals(SONG, song);
-        Assert.assertEquals(response.getMediaType(), MediaType.APPLICATION_JSON_TYPE);
         Assert.assertEquals(response.getStatus(), 200);
+        Assert.assertEquals(MediaType.APPLICATION_JSON_TYPE, response.getMediaType());
     }
 
     @Test
@@ -107,8 +145,8 @@ public class SongEndpointIntegrationTest extends JerseyTest {
         final Response response = target(String.format("/songs/%d", SONG_ID)).request().put(Entity.entity(SONG, MediaType.APPLICATION_JSON_TYPE));
         final Song song = response.readEntity(Song.class);
         Assert.assertEquals(SONG, song);
-        Assert.assertEquals(response.getMediaType(), MediaType.APPLICATION_JSON_TYPE);
         Assert.assertEquals(response.getStatus(), 201);
+        Assert.assertEquals(MediaType.APPLICATION_JSON_TYPE, response.getMediaType());
     }
 
     @Test
@@ -116,7 +154,6 @@ public class SongEndpointIntegrationTest extends JerseyTest {
         final Response response = target("/songs").request().post(Entity.entity("{}", MediaType.APPLICATION_JSON_TYPE));
         Assert.assertEquals(response.getStatus(), 400);
     }
-
 
     @Test
     public void deleteSongPositiveTest() {

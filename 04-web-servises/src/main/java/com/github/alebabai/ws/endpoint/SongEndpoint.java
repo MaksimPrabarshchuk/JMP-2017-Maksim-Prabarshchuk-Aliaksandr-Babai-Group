@@ -6,6 +6,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.github.alebabai.ws.JerseyApplication.BASE_URI;
 
@@ -15,8 +16,27 @@ public class SongEndpoint {
     public static final Map<Long, Song> SAP_HANA_DB = new LinkedHashMap<>();
 
     @GET
-    public Collection<Song> getSongs() {
-        return SAP_HANA_DB.values();
+    @Consumes(MediaType.TEXT_PLAIN)
+    public Collection<Song> getSortedSongs(@QueryParam("sort") @DefaultValue("") String sort) {
+        Collection<Song> result;
+        switch (sort.toLowerCase()) {
+            case "asc":
+                result = SAP_HANA_DB.values()
+                        .stream()
+                        .sorted(Comparator.comparing(Song::getId))
+                        .collect(Collectors.toList());
+                break;
+            case "desc":
+                result = SAP_HANA_DB.values()
+                        .stream()
+                        .sorted((song1, song2) -> song2.getId().compareTo(song1.getId()))
+                        .collect(Collectors.toList());
+                break;
+            default:
+                result = SAP_HANA_DB.values();
+                break;
+        }
+        return result;
     }
 
     @GET
@@ -33,7 +53,7 @@ public class SongEndpoint {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response saveSong(Song song) {
-        if(Objects.nonNull(song) && Objects.nonNull(song.getId())) {
+        if (Objects.nonNull(song) && Objects.nonNull(song.getId())) {
             final Response response = Optional.of(song.getId())
                     .filter(SAP_HANA_DB::containsKey)
                     .map(id -> Response.ok().type(MediaType.APPLICATION_JSON_TYPE).entity(song).build())
@@ -63,10 +83,10 @@ public class SongEndpoint {
 
     @DELETE
     @Path("{id}")
-    public Response deleteSong(@PathParam("id") Long id){
+    public Response deleteSong(@PathParam("id") Long id) {
         return Optional.of(id)
                 .filter(SAP_HANA_DB::containsKey)
-                .map(it ->{
+                .map(it -> {
                     SAP_HANA_DB.remove(id);
                     return Response.ok().build();
                 })
