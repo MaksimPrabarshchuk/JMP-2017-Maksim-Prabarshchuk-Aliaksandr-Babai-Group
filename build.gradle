@@ -10,6 +10,7 @@ subprojects {
     }
 
     dependencies {
+        compileOnly "org.projectlombok:lombok:1.16.14"
         compile 'org.apache.commons:commons-lang3:3.5'
         testCompile 'junit:junit:4.12'
     }
