@@ -1,7 +1,7 @@
-package com.github.alebabai.jmp2k17.service.impl;
+package com.github.alebabai.jmp2k17.spring.service.impl;
 
-import com.github.alebabai.jmp2k17.domain.Event;
-import com.github.alebabai.jmp2k17.service.EventsFactory;
+import com.github.alebabai.jmp2k17.spring.domain.Event;
+import com.github.alebabai.jmp2k17.spring.service.EventsFactory;
 
 import java.time.LocalDateTime;
 

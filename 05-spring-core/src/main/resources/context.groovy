@@ -1,6 +1,6 @@
-import com.github.alebabai.jmp2k17.service.impl.EventsBroadcasterServiceImpl
-import com.github.alebabai.jmp2k17.service.impl.EventsFactoryImpl
-import com.github.alebabai.jmp2k17.service.impl.EventsInvokerServiceImpl
+import com.github.alebabai.jmp2k17.spring.service.impl.EventsBroadcasterServiceImpl
+import com.github.alebabai.jmp2k17.spring.service.impl.EventsFactoryImpl
+import com.github.alebabai.jmp2k17.spring.service.impl.EventsInvokerServiceImpl
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler
 
 beans {

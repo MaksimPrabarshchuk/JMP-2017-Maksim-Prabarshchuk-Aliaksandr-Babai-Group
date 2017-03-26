@@ -11,6 +11,7 @@ buildscript {
 }
 
 apply plugin: 'org.springframework.boot'
+apply plugin: 'groovy'
 
 jar {
     baseName = this.name
@@ -23,7 +24,8 @@ bootRun {
 }
 
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '1.5.2.RELEASE'
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.2.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter'
+    compile 'org.springframework.boot:spring-boot-starter-aop'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 

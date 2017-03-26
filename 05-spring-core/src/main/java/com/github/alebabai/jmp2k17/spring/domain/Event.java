@@ -1,4 +1,4 @@
-package com.github.alebabai.jmp2k17.domain;
+package com.github.alebabai.jmp2k17.spring.domain;
 
 import lombok.Data;
 

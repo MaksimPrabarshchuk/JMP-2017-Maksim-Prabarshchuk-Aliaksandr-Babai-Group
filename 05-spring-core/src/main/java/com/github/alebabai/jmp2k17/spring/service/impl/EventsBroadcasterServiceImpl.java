@@ -1,8 +1,8 @@
-package com.github.alebabai.jmp2k17.service.impl;
+package com.github.alebabai.jmp2k17.spring.service.impl;
 
-import com.github.alebabai.jmp2k17.service.EventsBroadcasterService;
-import com.github.alebabai.jmp2k17.service.EventsFactory;
-import com.github.alebabai.jmp2k17.service.EventsInvokerService;
+import com.github.alebabai.jmp2k17.spring.service.EventsBroadcasterService;
+import com.github.alebabai.jmp2k17.spring.service.EventsFactory;
+import com.github.alebabai.jmp2k17.spring.service.EventsInvokerService;
 import org.springframework.scheduling.TaskScheduler;
 
 import javax.annotation.PostConstruct;
