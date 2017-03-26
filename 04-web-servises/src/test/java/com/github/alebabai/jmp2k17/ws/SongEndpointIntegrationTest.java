@@ -1,10 +1,10 @@
-package com.github.alebabai.ws;
+package com.github.alebabai.jmp2k17.ws;
 
-import com.github.alebabai.ws.domain.Quote;
-import com.github.alebabai.ws.domain.Song;
-import com.github.alebabai.ws.domain.Text;
-import com.github.alebabai.ws.domain.Verse;
-import com.github.alebabai.ws.endpoint.SongEndpoint;
+import com.github.alebabai.jmp2k17.ws.domain.Text;
+import com.github.alebabai.jmp2k17.ws.endpoint.SongEndpoint;
+import com.github.alebabai.jmp2k17.ws.domain.Quote;
+import com.github.alebabai.jmp2k17.ws.domain.Song;
+import com.github.alebabai.jmp2k17.ws.domain.Verse;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.After;
 import org.junit.Assert;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.github.alebabai.ws.JerseyApplication.createConfig;
+import static com.github.alebabai.jmp2k17.ws.JerseyApplication.createConfig;
 
 
 @RunWith(JUnit4.class)
