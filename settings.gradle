@@ -4,3 +4,5 @@ include '01-principle-of-software-development'
 include '02-troubleshooting'
 include '03-classloaders'
 include '04-web-servises'
+include '05-spring-core'
+

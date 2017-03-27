@@ -1,6 +1,6 @@
-package com.github.alebabai.ws.endpoint;
+package com.github.alebabai.jmp2k17.ws.endpoint;
 
-import com.github.alebabai.ws.domain.Song;
+import com.github.alebabai.jmp2k17.ws.domain.Song;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.github.alebabai.ws.JerseyApplication.BASE_URI;
+import static com.github.alebabai.jmp2k17.ws.JerseyApplication.BASE_URI;
 
 @Path("songs")
 @Produces(MediaType.APPLICATION_JSON)

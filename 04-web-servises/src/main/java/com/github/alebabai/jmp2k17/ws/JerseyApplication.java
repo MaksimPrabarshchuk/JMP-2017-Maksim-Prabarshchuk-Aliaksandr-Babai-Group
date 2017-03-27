@@ -1,4 +1,4 @@
-package com.github.alebabai.ws;
+package com.github.alebabai.jmp2k17.ws;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
