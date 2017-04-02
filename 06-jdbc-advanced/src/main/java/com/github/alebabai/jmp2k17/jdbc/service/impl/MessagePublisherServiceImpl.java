@@ -24,23 +24,30 @@ public class MessagePublisherServiceImpl implements MessagePublisherService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    @Scheduled(fixedDelay = 3000)
     @Override
     public void publishMessages() {
+        final long before = System.currentTimeMillis();
         factory.createMessages()
                 .stream()
                 .map(this::getSqlForMessage)
                 .forEach(jdbcTemplate::execute);
+        final long result = System.currentTimeMillis() - before;
+        System.out.println("One by one update mode: " + result);
     }
 
     @Scheduled(fixedDelay = 3000)
     @Override
     public void publishMessagesBatchMode() {
+        final long before = System.currentTimeMillis();
         final String[] sqlArray = factory.createMessages()
                 .stream()
                 .map(this::getSqlForMessage)
                 .collect(Collectors.toList())
                 .toArray(new String[0]);
         jdbcTemplate.batchUpdate(sqlArray);
+        final long result = System.currentTimeMillis() - before;
+        System.out.println("Batch update mode: " + result);
     }
 
     private String getSqlForMessage(Message message) {
