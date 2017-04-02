@@ -1,0 +1,30 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = this.name
+    group = this.group
+    version = this.version
+}
+
+bootRun {
+    addResources = true
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-jdbc'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    runtime 'com.h2database:h2:1.4.194'
+}
+
