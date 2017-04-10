@@ -6,4 +6,5 @@ include '03-classloaders'
 include '04-web-servises'
 include '05-spring-core'
 include '06-jdbc-advanced'
+include '07-ci'
 
