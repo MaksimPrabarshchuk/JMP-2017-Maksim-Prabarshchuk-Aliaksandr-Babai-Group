@@ -8,6 +8,6 @@ import org.junit.runners.JUnit4;
 public class SimpleTest {
     @Test
     public void successTest() {
-        System.out.println("12314");
+        System.out.println("123141234");
     }
 }
