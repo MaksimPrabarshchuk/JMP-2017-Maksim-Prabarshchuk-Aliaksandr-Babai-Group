@@ -1,0 +1,11 @@
+apply plugin: 'java-gradle-plugin'
+
+gradlePlugin {
+    plugins {
+        gitHubIssuesPlugin {
+            id = 'github-issues-plugin'
+            implementationClass = 'com.github.alebabai.jmp2k17.gradle.plugin.GitHubIssuesPlugin'
+        }
+    }
+}
+

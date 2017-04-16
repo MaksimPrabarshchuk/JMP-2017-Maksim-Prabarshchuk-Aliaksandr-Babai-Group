@@ -1,0 +1,7 @@
+this.group = 'com.github.alebabai.jmp2k17.gradle'
+
+//apply plugin: 'github-issues-plugin'
+
+dependencies {
+    compileClasspath project('github-issues-plugin')
+}
