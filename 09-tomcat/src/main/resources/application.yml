@@ -15,10 +15,12 @@ jmp:
 # ===============================
 server:
   tomcat:
+    basedir: ./09-tomcat
     accesslog:
       buffered: true
       directory: logs
       enabled: true
+      file-date-format: .MM-dd-yyyy
       prefix: access_log
       suffix: .log
 
