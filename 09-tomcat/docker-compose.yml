@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  app:
+    container_name: tomcat-jmp-app
+    build: .
+    ports:
+     - "8080:8080"
+    networks:
+      - tomcat-jmp-net
+    links:
+     - db
+    environment:
+     - JMP_DB_URL=postgresql://db:5432/jpm_tomcat_local
+  db:
+    container_name: tomcat-jmp-postgres
+    image: "postgres:latest"
+    environment:
+     - POSTGRES_USER=jpm_tomcat_local
+     - POSTGRES_PASSWORD=jpm_tomcat_local
+     - POSTGRES_DB=jpm_tomcat_local
+    ports:
+     - "5432:5432"
+    networks:
+      - tomcat-jmp-net
+
+networks:
+  tomcat-jmp-net:
+    driver: bridge
