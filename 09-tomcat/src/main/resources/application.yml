@@ -8,6 +8,9 @@ jmp:
     url: postgresql://localhost:5432/jpm_tomcat_local
     username: jpm_tomcat_local
     password: jpm_tomcat_local
+  logging:
+    access:
+      dir:
 
 
 # ===============================
@@ -15,10 +18,9 @@ jmp:
 # ===============================
 server:
   tomcat:
-    basedir: ./09-tomcat
     accesslog:
       buffered: true
-      directory: logs
+      directory: ${jmp.app.logging.access.dir}
       enabled: true
       file-date-format: .MM-dd-yyyy
       prefix: access_log
