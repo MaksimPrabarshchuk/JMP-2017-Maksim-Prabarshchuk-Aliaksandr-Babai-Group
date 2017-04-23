@@ -5,7 +5,7 @@ LABEL name="tomcat-jmp-app" \
 
 ARG ROOT_DIR=/usr/workspace
 ARG WORK_DIR=$ROOT_DIR/tomcat-jmp-app
-ENV SERVER_PORT=8080
+ENV SERVER_PORT=8081
 
 COPY . $WORK_DIR
 WORKDIR $WORK_DIR

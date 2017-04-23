@@ -1,19 +1,8 @@
 version: "3"
 
 services:
-  app:
-    container_name: tomcat-jmp-app
-    build: .
-    ports:
-     - "8080:8080"
-    networks:
-      - tomcat-jmp-net
-    links:
-     - db
-    environment:
-     - JMP_DB_URL=postgresql://db:5432/jpm_tomcat_local
   db:
-    container_name: tomcat-jmp-postgres
+    container_name: tomcat-jmp-db
     image: "postgres:latest"
     environment:
      - POSTGRES_USER=jpm_tomcat_local
@@ -23,6 +12,27 @@ services:
      - "5432:5432"
     networks:
       - tomcat-jmp-net
+  app:
+    container_name: tomcat-jmp-app
+    build: ./app
+    ports:
+     - "8081:8081"
+    networks:
+      - tomcat-jmp-net
+    links:
+     - db
+    environment:
+     - JMP_DB_URL=postgresql://db:5432/jpm_tomcat_local
+     - SERVER_PORT=8081
+  lb:
+    container_name: tomcat-jmp-lb
+    build: ./nginx
+    ports:
+     - "8080:8080"
+    networks:
+      - tomcat-jmp-net
+    links:
+     - app
 
 networks:
   tomcat-jmp-net:
