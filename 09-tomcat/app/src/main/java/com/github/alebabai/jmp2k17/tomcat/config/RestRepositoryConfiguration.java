@@ -10,7 +10,6 @@ public class RestRepositoryConfiguration extends RepositoryRestConfigurerAdapter
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         config.getCorsRegistry()
                 .addMapping("/api/**")
-                .allowedMethods("GET")
-                .allowedOrigins("https://vk.com");
+                .allowedOrigins("*");
     }
 }
