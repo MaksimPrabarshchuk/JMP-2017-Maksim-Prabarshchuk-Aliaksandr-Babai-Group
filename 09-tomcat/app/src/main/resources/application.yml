@@ -1,0 +1,72 @@
+# ===============================
+# [ Application Properties ]
+# ===============================
+jmp:
+  app:
+    name: Tomcat JMP
+  db:
+    url: postgresql://localhost:5432/jpm_tomcat_local
+    username: jpm_tomcat_local
+    password: jpm_tomcat_local
+  logging:
+    access:
+      dir:
+
+
+# ===============================
+# [ Server Properties ]
+# ===============================
+server:
+  tomcat:
+    accesslog:
+      buffered: true
+      directory: ${jmp.app.logging.access.dir}
+      enabled: true
+      file-date-format: .MM-dd-yyyy
+      prefix: access_log
+      suffix: .log
+
+
+# ===============================
+# [ Spring Properties ]
+# ===============================
+spring:
+  application:
+    name: "Tomcat JMP"
+  data:
+    rest:
+      basePath: /api
+  datasource:
+    url: jdbc:${jmp.db.url}
+    username: ${jmp.db.username}
+    password: ${jmp.db.password}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      id:
+        new_generator_mappings: true
+
+
+# ===============================
+# [ Flyway Properties ]
+# ===============================
+flyway:
+  enabled: true
+  locations: classpath:db/migration
+
+
+# ===============================
+# [ Logging Properties ]
+# ===============================
+logging:
+  level:
+    com:
+      github:
+        alebabai:
+          jmp2k17:
+            tomcat: DEBUG
+    org:
+      springframework: INFO
+      hibernate: ERROR
+      flywaydb: INFO

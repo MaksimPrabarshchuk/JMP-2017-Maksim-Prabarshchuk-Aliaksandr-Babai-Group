@@ -7,4 +7,6 @@ include '04-web-servises'
 include '05-spring-core'
 include '06-jdbc-advanced'
 include '07-ci'
+include '09-tomcat'
+include '09-tomcat:app'
 
