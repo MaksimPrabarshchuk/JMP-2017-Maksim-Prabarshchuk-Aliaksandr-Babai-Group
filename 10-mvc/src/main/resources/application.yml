@@ -24,4 +24,4 @@ logging:
       springframework: INFO
       hibernate: ERROR
   mustache:
-    suffix:
+    suffix: .html

@@ -1,8 +1,11 @@
 package com.github.alebabai.jmp2k17.mvc.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.Accessors;
+import org.apache.commons.lang3.builder.EqualsExclude;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -16,6 +19,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Accessors(chain = true)
+@ToString(exclude = {"comments"})
+@EqualsAndHashCode(exclude = {"comments"})
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class User {
