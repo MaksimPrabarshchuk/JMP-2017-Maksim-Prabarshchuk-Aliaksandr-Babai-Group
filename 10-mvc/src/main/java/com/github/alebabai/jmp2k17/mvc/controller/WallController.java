@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class WallController {
@@ -27,9 +29,12 @@ public class WallController {
     }
 
     @GetMapping("/")
-    public ModelAndView page() {
+    public ModelAndView page(@RequestParam(name = "filter", required = false) String filterQuery) {
         final HashMap<String, Object> model = new HashMap<>();
-        model.put("comments", commentRepository.findAll());
+        final List<Comment> comments = Optional.ofNullable(filterQuery)
+                .map(commentRepository::findAllByUser_Username_Containing)
+                .orElseGet(() -> (List<Comment>)commentRepository.findAll());
+        model.put("comments", comments);
         return new ModelAndView("wall", model);
     }
 
