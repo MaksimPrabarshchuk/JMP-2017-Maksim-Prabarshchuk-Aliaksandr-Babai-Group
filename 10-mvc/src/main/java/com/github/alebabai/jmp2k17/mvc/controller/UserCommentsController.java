@@ -16,6 +16,7 @@ import java.security.Principal;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserCommentsController {
@@ -31,7 +32,9 @@ public class UserCommentsController {
 
     @GetMapping("/my-comments")
     public ModelAndView myComments(Principal principal) {
-        final List<Comment> comments = userRepository.findByUsername(principal.getName())
+        final List<Comment> comments = Optional.ofNullable(principal)
+                .map(Principal::getName)
+                .flatMap(userRepository::findByUsername)
                 .map(User::getComments)
                 .orElse(Collections.emptyList());
         final HashMap<String, Object> model = new HashMap<>();

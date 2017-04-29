@@ -6,12 +6,14 @@ import com.github.alebabai.jmp2k17.mvc.repository.CommentRepository;
 import com.github.alebabai.jmp2k17.mvc.repository.UserRepository;
 import com.github.alebabai.jmp2k17.mvc.util.CommentUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.criteria.Order;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +35,7 @@ public class WallController {
         final HashMap<String, Object> model = new HashMap<>();
         final List<Comment> comments = Optional.ofNullable(filterQuery)
                 .map(commentRepository::findAllByUser_Username_Containing)
-                .orElseGet(() -> (List<Comment>)commentRepository.findAll());
+                .orElseGet(() -> (List<Comment>)commentRepository.findAll(new Sort(Sort.Direction.DESC, "createdAt")));
         model.put("comments", comments);
         return new ModelAndView("wall", model);
     }
