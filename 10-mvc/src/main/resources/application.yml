@@ -1,0 +1,27 @@
+# ===============================
+# [ Spring Properties ]
+# ===============================
+spring:
+  application:
+    name: MVC JMP
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+
+
+# ===============================
+# [ Logging Properties ]
+# ===============================
+logging:
+  level:
+    com:
+      github:
+        alebabai:
+          jmp2k17:
+            mvc: DEBUG
+    org:
+      springframework: INFO
+      hibernate: ERROR
+  mustache:
+    suffix: .html
