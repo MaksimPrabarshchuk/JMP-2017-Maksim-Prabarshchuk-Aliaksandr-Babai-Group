@@ -1,0 +1,50 @@
+# ===============================
+# [ Application Properties ]
+# ===============================
+jmp:
+  db:
+    url: postgresql://localhost:5435/jmp_local
+    username: jmp_local
+    password: jmp_local
+
+# ===============================
+# [ Spring Properties ]
+# ===============================
+spring:
+  data:
+    rest:
+      basePath: /api
+  datasource:
+    url: jdbc:${jmp.db.url}
+    username: ${jmp.db.username}
+    password: ${jmp.db.password}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      id:
+        new_generator_mappings: true
+
+
+# ===============================
+# [ Flyway Properties ]
+# ===============================
+flyway:
+  enabled: true
+  locations: classpath:db/migration
+
+
+# ===============================
+# [ Logging Properties ]
+# ===============================
+logging:
+  level:
+    com:
+      github:
+        alebabai:
+          jmp2k17:
+            jpa: DEBUG
+    org:
+      springframework: INFO
+      hibernate: ERROR
+      flywaydb: INFO
