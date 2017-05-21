@@ -6,10 +6,14 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Set;
+
+import static org.hibernate.annotations.CacheConcurrencyStrategy.TRANSACTIONAL;
 
 @Data
 @NoArgsConstructor
@@ -18,8 +22,9 @@ import java.util.Set;
 @EqualsAndHashCode(exclude = {"roles"})
 @Entity
 @Table(name = "jmp_user")
+@Cache(usage = TRANSACTIONAL)
 @Cacheable
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jmp_user_id_seq")
