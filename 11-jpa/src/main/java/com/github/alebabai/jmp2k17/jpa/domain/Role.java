@@ -7,18 +7,17 @@ import org.hibernate.annotations.Cache;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
 import java.io.Serializable;
 
-import static org.hibernate.annotations.CacheConcurrencyStrategy.TRANSACTIONAL;
+import static org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE;
 
 @Data
 @NoArgsConstructor
 @Accessors(chain = true)
 @Entity
 @Table(name = "jmp_role")
-@Cache(usage = TRANSACTIONAL)
-@Cacheable
+//@Cache(region = "user", usage = READ_WRITE)
+//@Cacheable
 public class Role implements Serializable {
 
     @Id

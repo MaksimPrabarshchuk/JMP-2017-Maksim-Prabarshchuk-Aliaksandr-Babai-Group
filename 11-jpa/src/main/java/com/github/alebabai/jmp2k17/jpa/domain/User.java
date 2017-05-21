@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.Cache;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Set;
 
-import static org.hibernate.annotations.CacheConcurrencyStrategy.TRANSACTIONAL;
+import static org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE;
 
 @Data
 @NoArgsConstructor
@@ -22,8 +23,6 @@ import static org.hibernate.annotations.CacheConcurrencyStrategy.TRANSACTIONAL;
 @EqualsAndHashCode(exclude = {"roles"})
 @Entity
 @Table(name = "jmp_user")
-@Cache(usage = TRANSACTIONAL)
-@Cacheable
 public class User implements Serializable {
 
     @Id
@@ -35,6 +34,7 @@ public class User implements Serializable {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @RestResource(path = "meta", rel = "meta")
     @Column(name = "meta", nullable = false, columnDefinition = "jsonb")
     @Convert(converter = MetaConverter.class)
     private Meta meta;

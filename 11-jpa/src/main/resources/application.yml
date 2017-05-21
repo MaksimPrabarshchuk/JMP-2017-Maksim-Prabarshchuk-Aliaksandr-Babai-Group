@@ -29,9 +29,9 @@ spring:
         cache:
           use_second_level_cache: true
           use_query_cache: true
-          provider_class: org.hibernate.cache.EhCacheProvider
+          provider_class: org.hibernate.cache.SingletonEhCacheProvider
           region:
-            factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+            factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
       javax:
         persistence:
           sharedCache:

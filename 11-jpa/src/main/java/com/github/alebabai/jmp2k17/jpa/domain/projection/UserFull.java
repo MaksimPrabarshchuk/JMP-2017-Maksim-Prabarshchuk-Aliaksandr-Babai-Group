@@ -7,8 +7,8 @@ import org.springframework.data.rest.core.config.Projection;
 
 import java.util.Set;
 
-@Projection(name = "with-roles", types = {User.class})
-public interface UserWithRolesProjection {
+@Projection(name = "full", types = {User.class})
+public interface UserFull {
     String getName();
 
     Meta getMeta();
