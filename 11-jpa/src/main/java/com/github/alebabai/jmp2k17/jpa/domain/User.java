@@ -18,6 +18,7 @@ import java.util.Set;
 @EqualsAndHashCode(exclude = {"roles"})
 @Entity
 @Table(name = "jmp_user")
+@Cacheable
 public class User {
 
     @Id

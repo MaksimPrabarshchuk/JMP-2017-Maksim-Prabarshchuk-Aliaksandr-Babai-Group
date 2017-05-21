@@ -56,8 +56,7 @@ dependencies {
     compileOnly "org.projectlombok:lombok:1.16.14"
     compile 'org.flywaydb:flyway-core:4.1.1'
     runtime 'org.postgresql:postgresql:42.0.0'
-    compile group: 'javax.json', name: 'javax.json-api', version: '1.1.0-M2'
-    compile group: 'org.glassfish', name: 'javax.json', version: '1.1.0-M2'
+    compile group: 'org.hibernate', name: 'hibernate-ehcache', version: '5.2.10.Final'
 
     /**
      *  Test dependencies

@@ -1,4 +1,4 @@
-package com.github.alebabai.jmp2k17.jpa.projection;
+package com.github.alebabai.jmp2k17.jpa.domain.projection;
 
 import com.github.alebabai.jmp2k17.jpa.domain.Meta;
 import com.github.alebabai.jmp2k17.jpa.domain.Role;
@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.config.Projection;
 
 import java.util.Set;
 
-@Projection(name = "with-roles", types = User.class)
+@Projection(name = "with-roles", types = {User.class})
 public interface UserWithRolesProjection {
     String getName();
 

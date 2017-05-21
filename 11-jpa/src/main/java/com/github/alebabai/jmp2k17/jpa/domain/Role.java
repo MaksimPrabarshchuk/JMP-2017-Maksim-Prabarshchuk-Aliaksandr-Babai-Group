@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @Accessors(chain = true)
 @Entity
 @Table(name = "jmp_role")
+@Cacheable
 public class Role {
 
     @Id
