@@ -15,7 +15,7 @@ spring:
     rest:
       basePath: /api
   datasource:
-    url: jdbc:${jmp.db.url}
+    url: jdbc:${jmp.db.url}?stringtype=unspecified
     username: ${jmp.db.username}
     password: ${jmp.db.password}
   jpa:

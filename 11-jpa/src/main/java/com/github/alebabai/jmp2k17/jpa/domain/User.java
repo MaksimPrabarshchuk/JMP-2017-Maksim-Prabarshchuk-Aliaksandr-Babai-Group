@@ -1,5 +1,6 @@
 package com.github.alebabai.jmp2k17.jpa.domain;
 
+import com.github.alebabai.jmp2k17.jpa.converter.MetaConverter;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,10 @@ public class User {
     @NotNull(message = "Name is required!")
     @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+    @Column(name = "meta", nullable = false, columnDefinition = "jsonb")
+    @Convert(converter = MetaConverter.class)
+    private Meta meta;
 
     @ManyToMany
     @JoinTable(
