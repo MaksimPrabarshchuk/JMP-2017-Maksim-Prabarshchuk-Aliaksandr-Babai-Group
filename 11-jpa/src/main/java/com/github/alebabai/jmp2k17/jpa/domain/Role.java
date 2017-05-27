@@ -16,7 +16,7 @@ import static org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE;
 @Accessors(chain = true)
 @Entity
 @Table(name = "jmp_role")
-//@Cache(region = "user", usage = READ_WRITE)
+//@Cache(region = "role", usage = READ_WRITE)
 //@Cacheable
 public class Role implements Serializable {
 
