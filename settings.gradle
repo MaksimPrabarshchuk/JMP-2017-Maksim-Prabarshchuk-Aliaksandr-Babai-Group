@@ -12,4 +12,5 @@ include '08-gradle:github-issues-plugin'
 include '09-tomcat'
 include '09-tomcat:app'
 include '10-mvc'
+include '11-jpa'
 
