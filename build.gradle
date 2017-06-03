@@ -13,6 +13,7 @@ subprojects {
         compileOnly "org.projectlombok:lombok:1.16.14"
         compile 'org.apache.commons:commons-lang3:3.5'
         testCompile 'junit:junit:4.12'
+        testCompile 'org.hamcrest:hamcrest-junit:2.0.0.0'
     }
 
     version = '0.0.1'
