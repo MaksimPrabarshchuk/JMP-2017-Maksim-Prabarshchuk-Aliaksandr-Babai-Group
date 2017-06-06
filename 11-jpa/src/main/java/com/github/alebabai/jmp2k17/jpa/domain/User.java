@@ -23,6 +23,8 @@ import static org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE;
 @EqualsAndHashCode(exclude = {"roles"})
 @Entity
 @Table(name = "jmp_user")
+////@Cache(region = "role", usage = READ_WRITE)
+//@Cacheable
 public class User implements Serializable {
 
     @Id
