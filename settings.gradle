@@ -15,4 +15,5 @@ include '10-mvc'
 include '11-jpa'
 include '12-java-8'
 include '14-no-sql'
+include '13-locks'
 
